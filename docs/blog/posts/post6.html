@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>AxelBase – Unicode Normalizer (NFC - NFD)</title>
+    <link rel="icon" href="../../AxelLab-Logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    
+		<link href="../../_app/immutable/assets/0.Bgz0p4VI.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/10.BlPbUQzb.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.DJNxreJ_.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DjPGDmJ5.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/4GdX9EtE.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/3O6g_mmp.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DG1LXcsh.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CjPasuzP.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.Bhce-aKf.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Bk9M1qF-.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/lKns7EjF.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BlAcquLf.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CSomc5Vq.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.BHYiLtM8.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Bwuc2S4k.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/p1wKsWI2.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/D4EAjPo6.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Blt0FdOs.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BdpOOpCe.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/10.dYT86cNy.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/C_tG9vrW.js"><!--q8x3kg--><meta name="description" content="Why normalizing text in the browser before submission is the most effective defense against Unicode inconsistencies."/> <meta property="og:title" content="Best Practices: Always Normalize Input at the Edge • AxelBase Blog"/> <meta property="og:description" content="Why normalizing text in the browser before submission is the most effective defense against Unicode inconsistencies."/> <meta property="og:url" content="../../blog/posts/post6"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/><!----><title>Best Practices: Always Normalize Input at the Edge • AxelBase Blog</title>
+  </head>
+  <body class="" data-bs-theme="light" data-sveltekit-preload-data="hover">
+    <div style="display: contents"><!--[--><!--[--><!----><header class="fixed-top p-3 w-100 svelte-12qhfyh" style="pointer-events: none; z-index: 1040;"><nav class="container glass rounded-pill px-3 px-md-4 py-2 d-flex justify-content-between align-items-center svelte-12qhfyh" style="pointer-events: auto; max-width: 1200px;"><div class="d-flex align-items-center gap-3 svelte-12qhfyh"><a href="../../" class="d-flex align-items-center gap-2 logo-group text-decoration-none svelte-12qhfyh"><img src="../../AxelLab-Logo.ico" alt="Logo" class="navbar-brand-logo svelte-12qhfyh"/> <span class="fw-bold fs-5 d-none d-sm-block brand-text svelte-12qhfyh">AxelBase</span></a> <div class="position-relative ms-1 svelte-12qhfyh"><button class="btn btn-coffee d-flex align-items-center gap-2 svelte-12qhfyh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="coffee-icon svelte-12qhfyh"><path d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z" class="svelte-12qhfyh"></path></svg> <span class="d-none d-md-inline svelte-12qhfyh">Buy coffee</span></button> <!--[!--><!--]--></div></div> <div class="d-flex align-items-center gap-3 svelte-12qhfyh"><ul class="nav d-none d-lg-flex align-items-center gap-1 m-0 svelte-12qhfyh"><li class="svelte-12qhfyh"><a class="nav-link-custom svelte-12qhfyh" href="../../">Home</a></li> <li class="svelte-12qhfyh"><a class="nav-link-custom svelte-12qhfyh" href="../../#about">About</a></li> <li class="svelte-12qhfyh"><a class="nav-link-custom svelte-12qhfyh" href="../../#how-to">How to use</a></li> <li class="svelte-12qhfyh"><a class="nav-link-custom svelte-12qhfyh" href="../../#faq">FAQ</a></li> <li class="svelte-12qhfyh"><a class="btn btn-primary btn-sm ms-2 svelte-12qhfyh" href="../../blog">Blog</a></li></ul> <button class="btn btn-theme-toggle svelte-12qhfyh" aria-label="Toggle Dark Mode"><!--[!--><i class="bi bi-moon-stars-fill svelte-12qhfyh"></i><!--]--></button> <button class="d-lg-none btn btn-sm btn-outline-primary border-0 svelte-12qhfyh" aria-label="Menu"><i class="bi bi-list fs-4 svelte-12qhfyh"></i></button></div></nav></header> <main class="content-wrapper svelte-12qhfyh"><!--[--><!----><div class="container fade-in post-layout svelte-q8x3kg"><div class="breadcrumbs svelte-q8x3kg"><a href="../../blog" class="svelte-q8x3kg">Blog</a> <span>/</span> <p class="svelte-q8x3kg">Best Practices</p></div> <article class="prose svelte-q8x3kg"><h1 class="svelte-q8x3kg">Best Practices: Always Normalize Input at the Edge</h1> <p class="post-meta svelte-q8x3kg">Published: December 1, 2025</p> <p class="svelte-q8x3kg">The single most effective way to prevent Unicode normalization issues is to handle them as close to the user as possible, right in the browser, immediately after text is entered. This strategy, known as normalizing at the edge, eliminates problems before they can spread.</p> <p class="svelte-q8x3kg">When text is normalized the moment it enters a form field, every subsequent system receives clean, consistent data. Databases store one canonical representation. Search works reliably. Comparisons succeed. Users never experience strange failures caused by invisible differences in character encoding.</p> <h2 class="svelte-q8x3kg">Why the Edge Is the Right Place</h2> <p class="svelte-q8x3kg">Normalizing on the server is too late. By the time data arrives, inconsistencies may have already caused validation failures, duplicate records, or security issues. Normalizing in the browser ensures that what the user sees is exactly what gets sent, with no surprises.</p> <p class="svelte-q8x3kg">This approach also improves performance. Client-side normalization is instantaneous and offloads work from the server. It requires no additional infrastructure and works even when the user is offline.</p> <h3 class="svelte-q8x3kg">Recommended Strategy</h3> <ul class="svelte-q8x3kg"><li class="svelte-q8x3kg">Normalize all user input to composed form on blur or submit</li> <li class="svelte-q8x3kg">Display real-time feedback showing the current normalization state</li> <li class="svelte-q8x3kg">Apply the same rule to pasted text and file uploads</li> <li class="svelte-q8x3kg">Enforce consistency across all entry points</li></ul> <h3 class="svelte-q8x3kg">Long-Term Benefits</h3> <p class="svelte-q8x3kg">Teams that adopt edge normalization report dramatically fewer text-related bugs, cleaner data, and happier users. It becomes a foundational habit that prevents an entire class of issues from ever occurring.</p> <p class="italic-note svelte-q8x3kg">Normalize early, normalize once, and build applications that work flawlessly across every platform and device.</p></article></div><!----><!--]--></main> <footer class="releative glass border-top py-3 mt-auto svelte-12qhfyh"><div class="container text-center svelte-12qhfyh"><span class="small text-muted fw-bold svelte-12qhfyh">© 2025 AxelBase Unicode Normalizer</span> <span class="mx-2 text-muted svelte-12qhfyh">|</span> <a href="../../privacy" class="footer-link svelte-12qhfyh">Privacy</a> <span class="mx-1 text-muted svelte-12qhfyh">•</span> <a href="../../terms" class="footer-link svelte-12qhfyh">Terms</a></div></footer><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_tyaek9 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						assets: "/unicode-normalizer"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.DJNxreJ_.js"),
+						import("../../_app/immutable/entry/app.Bhce-aKf.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 10],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

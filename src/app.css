@@ -1,0 +1,214 @@
+/* app.css */
+
+/* --- Variables (Light Mode Default - Ivory/Gold Theme) --- */
+:root {
+  --brand-primary: #E6D690; /* Light Ivory */
+  --brand-primary-hover: #d4c06e;
+  
+  --primary-bg: #fdfcf5; /* Very light ivory/cream background */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 8px 32px 0 rgba(230, 214, 144, 0.15);
+  
+  --color-text-main: #4a4a4a;
+  --color-text-muted: #8c8c8c;
+  --color-accent: #E6D690;
+  --color-accent-text: #3d3d3d; /* Darker text for contrast on gold */
+  
+  --input-bg: rgba(255, 255, 255, 0.8);
+  
+  /* Blob colors (Subtle Gold/Yellows) */
+  --blob-color-1: #faedcd; 
+  --blob-color-2: #e6d690;
+
+  --radius-lg: 30px;
+  --radius-sm: 15px;
+  
+  --bs-body-bg: var(--primary-bg);
+  --bs-body-color: var(--color-text-main);
+  
+  /* Badge Colors */
+  --badge-nfc: #0d6efd;
+  --badge-nfd: #198754;
+  --badge-mixed: #fd7e14;
+  --badge-unnorm: #6c757d;
+}
+
+/* --- Dark Mode Overrides --- */
+[data-bs-theme="dark"] {
+  --primary-bg: #121212; /* Deep Dark */
+  --glass-bg: rgba(30, 30, 30, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  
+  --color-text-main: #e0e0e0;
+  --color-text-muted: #a0a0a0;
+  --color-accent: #d4c06e; /* Slightly darker gold for dark mode */
+  --color-accent-text: #1a1a1a;
+  
+  --input-bg: rgba(40, 40, 40, 0.6);
+  
+  /* Blob colors (Darker Golds/Browns) */
+  --blob-color-1: #4a4015;
+  --blob-color-2: #2e2a10;
+}
+
+/* --- Global & Reset --- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  background: var(--primary-bg);
+  color: var(--color-text-main);
+  transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+/* --- Animated Background Blobs --- */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(90px);
+  opacity: 0.5;
+  animation: floatBlob 25s infinite alternate ease-in-out;
+  transition: background-color 0.5s ease;
+}
+
+body::before {
+  background: var(--blob-color-1);
+  top: -10%;
+  left: -10%;
+}
+
+body::after {
+  background: var(--blob-color-2);
+  bottom: -10%;
+  right: -10%;
+  animation-delay: -5s;
+}
+
+@keyframes floatBlob {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 40px) scale(1.1); }
+}
+
+main {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Glassmorphism Utilities --- */
+.glass, .card {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow);
+  color: var(--color-text-main);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* --- Inputs --- */
+textarea, .form-control {
+  background-color: var(--input-bg) !important;
+  border: 2px solid var(--glass-border) !important;
+  color: var(--color-text-main) !important;
+  border-radius: var(--radius-lg) !important;
+  font-family: ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', monospace;
+  transition: all 0.3s ease;
+}
+
+textarea:focus, .form-control:focus {
+  background-color: var(--input-bg) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: 0 0 0 4px rgba(230, 214, 144, 0.3) !important;
+}
+
+/* --- Buttons --- */
+.btn {
+  border-radius: 50px !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 10px 25px;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.btn-primary {
+  background-color: var(--brand-primary);
+  color: var(--color-accent-text);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-primary-hover);
+  color: var(--color-accent-text);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(230, 214, 144, 0.5);
+}
+
+.btn-outline-primary {
+  color: var(--color-text-main);
+  border: 2px solid var(--brand-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--brand-primary);
+  color: var(--color-accent-text);
+  border-color: var(--brand-primary);
+}
+
+/* --- Accordion Fix (Moved here to prevent build warning) --- */
+.accordion-button {
+  background-color: rgba(255,255,255,0.3) !important;
+  color: var(--color-text-main) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(5px);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--brand-primary) !important;
+  color: var(--color-accent-text) !important;
+  box-shadow: none !important;
+}
+
+[data-bs-theme="dark"] .accordion-button {
+  background-color: rgba(0,0,0,0.2) !important;
+}
+
+[data-bs-theme="dark"] .accordion-button:not(.collapsed) {
+  background-color: var(--brand-primary) !important;
+  color: var(--color-accent-text) !important;
+}
+
+/* --- Badge Helpers --- */
+.badge-nfc    { background-color: var(--badge-nfc) !important; color: white; }
+.badge-nfd    { background-color: var(--badge-nfd) !important; color: white; }
+.badge-mixed  { background-color: var(--badge-mixed) !important; color: white; }
+.badge-unnorm { background-color: var(--badge-unnorm) !important; color: white; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--brand-primary);
+  border-radius: 10px;
+  border: 3px solid var(--primary-bg);
+}

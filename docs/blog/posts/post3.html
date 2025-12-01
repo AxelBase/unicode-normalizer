@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>AxelBase – Unicode Normalizer (NFC - NFD)</title>
+    <link rel="icon" href="../../AxelLab-Logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    
+		<link href="../../_app/immutable/assets/0.Bgz0p4VI.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/7.DIK6PzcP.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.DJNxreJ_.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DjPGDmJ5.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/4GdX9EtE.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/3O6g_mmp.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DG1LXcsh.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CjPasuzP.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.Bhce-aKf.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Bk9M1qF-.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/lKns7EjF.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BlAcquLf.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CSomc5Vq.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.BHYiLtM8.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Bwuc2S4k.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/p1wKsWI2.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/D4EAjPo6.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Blt0FdOs.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BdpOOpCe.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/7.CR35IKic.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/C_tG9vrW.js"><!--1al8b51--><meta name="description" content="Learn how unnormalized Unicode text creates duplicate records, failed searches, and indexing problems in databases."/> <meta property="og:title" content="The Hidden Bugs of Unnormalized Text in Databases • AxelBase Blog"/> <meta property="og:description" content="Learn how unnormalized Unicode text creates duplicate records, failed searches, and indexing problems in databases."/> <meta property="og:url" content="../../blog/posts/post3"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/><!----><title>The Hidden Bugs of Unnormalized Text in Databases • AxelBase Blog</title>
+  </head>
+  <body class="" data-bs-theme="light" data-sveltekit-preload-data="hover">
+    <div style="display: contents"><!--[--><!--[--><!----><header class="fixed-top p-3 w-100 svelte-12qhfyh" style="pointer-events: none; z-index: 1040;"><nav class="container glass rounded-pill px-3 px-md-4 py-2 d-flex justify-content-between align-items-center svelte-12qhfyh" style="pointer-events: auto; max-width: 1200px;"><div class="d-flex align-items-center gap-3 svelte-12qhfyh"><a href="../../" class="d-flex align-items-center gap-2 logo-group text-decoration-none svelte-12qhfyh"><img src="../../AxelLab-Logo.ico" alt="Logo" class="navbar-brand-logo svelte-12qhfyh"/> <span class="fw-bold fs-5 d-none d-sm-block brand-text svelte-12qhfyh">AxelBase</span></a> <div class="position-relative ms-1 svelte-12qhfyh"><button class="btn btn-coffee d-flex align-items-center gap-2 svelte-12qhfyh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="coffee-icon svelte-12qhfyh"><path d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z" class="svelte-12qhfyh"></path></svg> <span class="d-none d-md-inline svelte-12qhfyh">Buy coffee</span></button> <!--[!--><!--]--></div></div> <div class="d-flex align-items-center gap-3 svelte-12qhfyh"><ul class="nav d-none d-lg-flex align-items-center gap-1 m-0 svelte-12qhfyh"><li class="svelte-12qhfyh"><a class="nav-link-custom svelte-12qhfyh" href="../../">Home</a></li> <li class="svelte-12qhfyh"><a class="nav-link-custom svelte-12qhfyh" href="../../#about">About</a></li> <li class="svelte-12qhfyh"><a class="nav-link-custom svelte-12qhfyh" href="../../#how-to">How to use</a></li> <li class="svelte-12qhfyh"><a class="nav-link-custom svelte-12qhfyh" href="../../#faq">FAQ</a></li> <li class="svelte-12qhfyh"><a class="btn btn-primary btn-sm ms-2 svelte-12qhfyh" href="../../blog">Blog</a></li></ul> <button class="btn btn-theme-toggle svelte-12qhfyh" aria-label="Toggle Dark Mode"><!--[!--><i class="bi bi-moon-stars-fill svelte-12qhfyh"></i><!--]--></button> <button class="d-lg-none btn btn-sm btn-outline-primary border-0 svelte-12qhfyh" aria-label="Menu"><i class="bi bi-list fs-4 svelte-12qhfyh"></i></button></div></nav></header> <main class="content-wrapper svelte-12qhfyh"><!--[--><!----><div class="container fade-in post-layout svelte-1al8b51"><div class="breadcrumbs svelte-1al8b51"><a href="../../blog" class="svelte-1al8b51">Blog</a> <span>/</span> <p class="svelte-1al8b51">Database Normalization Issues</p></div> <article class="prose svelte-1al8b51"><h1 class="svelte-1al8b51">The Hidden Bugs of Unnormalized Text in Databases</h1> <p class="post-meta svelte-1al8b51">Published: November 25, 2025</p> <p class="svelte-1al8b51">One of the most common and difficult-to-diagnose issues in multilingual applications comes from storing text in different normalization forms. When users from different operating systems enter the same word using different representations, databases treat them as distinct values, leading to data quality problems that accumulate over time.</p> <p class="svelte-1al8b51">Consider a customer database where one user registers their city as “Zürich” from a Mac, while another enters “Zurich” from Windows. Both appear correct visually, but the database now contains two separate entries for the same location. Reports become inaccurate, analytics are skewed, and deduplication becomes a nightmare.</p> <h2 class="svelte-1al8b51">How Databases Are Affected</h2> <p class="svelte-1al8b51">Most database systems perform exact matching by default. Even with case-insensitive collations, different normalization forms are treated as different strings. This means that searches for “ naïve” will not match entries stored as “naive” with combining marks, even though they are canonically equivalent.</p> <p class="svelte-1al8b51">Full-text search indexes can also suffer. Some engines split text on code point boundaries, causing words with combining characters to be indexed incorrectly or not at all. The result is poor search relevance and frustrated users who cannot find what they are looking for.</p> <h3 class="svelte-1al8b51">Common Symptoms</h3> <ul class="svelte-1al8b51"><li class="svelte-1al8b51">Duplicate customer or product records</li> <li class="svelte-1al8b51">Missing search results for accented names</li> <li class="svelte-1al8b51">Failed unique constraint checks on email or username fields</li> <li class="svelte-1al8b51">Inconsistent sorting in reports and user interfaces</li></ul> <h3 class="svelte-1al8b51">Prevention Through Early Normalization</h3> <p class="svelte-1al8b51">The most effective solution is to normalize all text before it ever reaches the database. By converting incoming data to a single consistent form at the application boundary, you eliminate the possibility of mixed representations entirely.</p> <p class="svelte-1al8b51">This approach is lightweight, instantaneous, and requires no changes to database schema or indexing strategy. It ensures that all future comparisons, searches, and joins work correctly from day one.</p> <p class="italic-note svelte-1al8b51">Normalize early, normalize once, and eliminate an entire class of subtle but costly data integrity issues.</p></article></div><!----><!--]--></main> <footer class="releative glass border-top py-3 mt-auto svelte-12qhfyh"><div class="container text-center svelte-12qhfyh"><span class="small text-muted fw-bold svelte-12qhfyh">© 2025 AxelBase Unicode Normalizer</span> <span class="mx-2 text-muted svelte-12qhfyh">|</span> <a href="../../privacy" class="footer-link svelte-12qhfyh">Privacy</a> <span class="mx-1 text-muted svelte-12qhfyh">•</span> <a href="../../terms" class="footer-link svelte-12qhfyh">Terms</a></div></footer><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_tyaek9 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						assets: "/unicode-normalizer"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.DJNxreJ_.js"),
+						import("../../_app/immutable/entry/app.Bhce-aKf.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
